@@ -25,25 +25,26 @@ const minusButton = document.querySelectorAll('.minusButton');
 const counterValue = document.querySelectorAll('.counterValue')
 const removeButton = document.querySelector('.removeButton')
 const clearBasket = document.querySelector('.clearBasket')
+const p = document.getElementById('#p')
 
 
 const data_s4 = [
-    {id: 12, img:"./img/krosovkalar/krosovka1.png", nom:"Polo", narx:499, chegirma:99},
-    {id: 13, img:"./img/krosovkalar/krosovka2.png", nom:"Gucci", narx:599, chegirma:99},
-    {id: 14, img:"./img/krosovkalar/krosovka3.png", nom:"Versache", narx:399, chegirma:99},
-    {id: 15, img:"./img/krosovkalar/krosovka4.png", nom:"Balenciaga", narx:299, chegirma:99},
+    {id: 12, img:"./img/krosovkalar/krosovka1.png", count:1, nom:"Polo", narx:499, chegirma:99},
+    {id: 13, img:"./img/krosovkalar/krosovka2.png", count:1, nom:"Gucci", narx:599, chegirma:99},
+    {id: 14, img:"./img/krosovkalar/krosovka3.png", count:1, nom:"Versache", narx:399, chegirma:99},
+    {id: 15, img:"./img/krosovkalar/krosovka4.png", count:1, nom:"Balenciaga", narx:299, chegirma:99},
 ];
 
 
 const data = [
-    {id: 1, img:"./img/krosovkalar/krosovka1.png", nom:"Polo", narx:499, chegirma:99},
-    {id: 2, img:"./img/krosovkalar/krosovka2.png", nom:"Gucci", narx:599, chegirma:99},
-    {id: 3, img:"./img/krosovkalar/krosovka3.png", nom:"Versache", narx:399, chegirma:99},
-    {id: 4, img:"./img/krosovkalar/krosovka4.png", nom:"Balenciaga", narx:299, chegirma:99},
-    {id: 5, img:"./img/krosovkalar/krosovka5.png", nom:"Adidas", narx:199, chegirma:99},
-    {id: 6, img:"./img/krosovkalar/krosovka6.png", nom:"Nike", narx:459, chegirma:99},
-    {id: 7, img:"./img/krosovkalar/krosovka7.png", nom:"Loro Piana", narx:479, chegirma:99},
-    {id: 8, img:"./img/krosovkalar/krosovka8.png", nom:"Massimo Dutti", narx:369, chegirma:99}
+    {id: 1, img:"./img/krosovkalar/krosovka1.png", count:1, nom:"Polo", narx:499, chegirma:99},
+    {id: 2, img:"./img/krosovkalar/krosovka2.png", count:1, nom:"Gucci", narx:599, chegirma:99},
+    {id: 3, img:"./img/krosovkalar/krosovka3.png", count:1, nom:"Versache", narx:399, chegirma:99},
+    {id: 4, img:"./img/krosovkalar/krosovka4.png", count:1, nom:"Balenciaga", narx:299, chegirma:99},
+    {id: 5, img:"./img/krosovkalar/krosovka5.png", count:1, nom:"Adidas", narx:199, chegirma:99},
+    {id: 6, img:"./img/krosovkalar/krosovka6.png", count:1, nom:"Nike", narx:459, chegirma:99},
+    {id: 7, img:"./img/krosovkalar/krosovka7.png", count:1, nom:"Loro Piana", narx:479, chegirma:99},
+    {id: 8, img:"./img/krosovkalar/krosovka8.png", count:1, nom:"Massimo Dutti", narx:369, chegirma:99}
 
 ];
 const data_s3 = [
@@ -73,7 +74,13 @@ function moveLeft1() {
 };
 
 
-
+// delete function start
+function Deletee(ochirish){
+    let deleteData = getdata.filter((item)=> item.id !== ochirish);
+    localStorage.setItem('basket', JSON.stringify(deleteData));
+    location.reload();
+}
+// delete function end
 
 // basketga o'tish funksiyasi
 
@@ -113,6 +120,11 @@ function addcart(index){
     newdata.push(data[index]);
     localStorage.setItem('basket', JSON.stringify(newdata));
 };
+function addcartS4(index){
+    newdata.push(data_s4[index]);
+    localStorage.setItem('basket', JSON.stringify(newdata));
+    console.log(data_s4[index]);
+};
 
 // add cart end
 // ---------------------------------------
@@ -120,7 +132,8 @@ function addcart(index){
 // getdata
 
 const getdata =  JSON.parse(localStorage.getItem('basket'))||[];
-
+const getdataLength = getdata.length;
+console.log(getdataLength);
 // getdata integratsiya start
 
 if (basketCard) {
@@ -130,12 +143,12 @@ if (basketCard) {
                 <img src="${basketItem.img}">
                 <p class="productName">${basketItem.nom}</p>
                 <div class="countButtons">
-                    <button class="plusButton"><i class="fa-solid fa-plus"></i></button>
-                    <p class="counterValue"></p>
-                    <button class="minusButton"><i class="fa-solid fa-minus"></i></button>
+                    <button onclick="plus(${basketItem.id})" class="plusButton" ><i class="fa-solid fa-plus"></i></button>
+                    <p class="counterValue">${basketItem.count}</p>
+                    <button class="minusButton" onclick="minus(${basketItem.id})"><i class="fa-solid fa-minus"></i></button>
                 </div>
-                <p class="productPrice">${basketItem.narx - basketItem.chegirma} 000</p>
-                <button class="removeButton"><i class="fa-solid fa-x fa-2xl"></i></button>
+                <p class="productPrice">${basketItem.narx * basketItem.count} 000</p>
+                <button onclick="Deletee(${basketItem.id})" class="removeButton"><i class="fa-solid fa-x fa-2xl"></i></button>
             </div>
         `;
     });
@@ -162,7 +175,31 @@ location.reload();
 
 // clearBasket function end
 
+function plus(id){
+    getdata.forEach((item)=>{
+if (item.id === id){
+    item.count == item.count++
+    localStorage.setItem("basket",JSON.stringify(getdata));
+}
 
+    });
+    location.reload();
+}
+function minus(id){
+    getdata.forEach((item)=>{
+if (item.id === id){
+    if(item.count > 1){
+        item.count--;
+    }else{
+        item.count;
+    }
+    // item.count == item.count > 2 ? item.count-- : item.count;
+    localStorage.setItem("basket",JSON.stringify(getdata));
+}
+
+    });
+    location.reload();
+}
 
 // getdata integratsiya end
 
@@ -187,7 +224,8 @@ data.map((item, index) => {
         </div>
     `;
 });
-data.map((item) => {
+
+data.map((item,index) => {
     cards2.innerHTML += `
         <div class="card">
             <img src="${item.img}" alt="">
@@ -197,12 +235,12 @@ data.map((item) => {
             <del>${item.chegirma} 000</del>
             <div class="btns_card_s2">
                 <button class="buyButton">Sotib olish</button>
-                <button class="toBasket">Savatga</button>
+                <button onclick=(addcart(${index})) class="toBasket">Savatga</button>
             </div>
         </div>
     `;
 });
-data.map((item) => {
+data.map((item,index) => {
     cards3.innerHTML += `
         <div class="card">
             <img src="${item.img}" alt="">
@@ -212,7 +250,7 @@ data.map((item) => {
             <del>${item.chegirma} 000</del>
             <div class="btns_card_s2">
                 <button class="buyButton">Sotib olish</button>
-                <button class="toBasket">Savatga</button>
+                <button onclick=(addcart(${index})) class="toBasket">Savatga</button>
             </div>
         </div>
     `;
@@ -244,7 +282,7 @@ data_s3.map((item1)=>{
 // section 3 integratsiya end
 // ---------------------------------------
 // section 4 integratsiya start
-data_s4.map((item_s4) => {
+data_s4.map((item_s4,index) => {
     cards1_s4.innerHTML += `
         <div class="card">
             <img src="${item_s4.img}" alt="">
@@ -254,12 +292,12 @@ data_s4.map((item_s4) => {
             <del>${item_s4.chegirma} 000</del>
             <div class="btns_card_s2">
                 <button class="buyButton">Sotib olish</button>
-                <button class="toBasket">Savatga</button>
+                <button onclick=(addcartS4(${index})) class="toBasket">Savatga</button>
             </div>
         </div>
     `;
 });
-data_s4.map((item_s4) => {
+data_s4.map((item_s4,index) => {
     cards2_s4.innerHTML += `
         <div class="card">
             <img src="${item_s4.img}" alt="">
@@ -269,7 +307,7 @@ data_s4.map((item_s4) => {
             <span>${item_s4.chegirma} 000</span>
             <div class="btns_card_s2">
                 <button class="buyButton">Sotib olish</button>
-                <button class="toBasket">Savatga</button>
+                <button onclick=(addcartS4(${index})) class="toBasket">Savatga</button>
             </div>
         </div>
     `;
@@ -284,7 +322,7 @@ data_s4.map((item_s4) => {
             <span>${item_s4.chegirma} 000</span>
             <div class="btns_card_s2">
                 <button class="buyButton">Sotib olish</button>
-                <button class="toBasket">Savatga</button>
+                <button onclick=(addcartS4(${index})) class="toBasket">Savatga</button>
             </div>
         </div>
     `;
@@ -357,6 +395,11 @@ rightBtn.addEventListener('click', moveRight);
 
 // section 1 karusel end
 
+// if(getdata.length > 0){
+//     p.innerHTML = getdataLength;
+// }else{
+//     p.innerHTML = 0
+// }
 
 
 

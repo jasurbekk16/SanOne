@@ -9,6 +9,7 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
+/* wrapper--------------start */
 .wrapper {
     position: relative;
     max-width: 1920px;
@@ -17,17 +18,28 @@ body{
     flex-direction: column;
     overflow: hidden;
 }
-.wrapperBasket{
-    width: 1920px;
-height: 1276px;
-position: relative;
-display: flex;
-flex-direction: column;
-overflow: hidden;
-background-color: #F5F5F5;
-
+#p{
+    position: absolute;
+    right: 270px;
+    top: 30px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    text-decoration: none;
 }
+/* wrapper--------------end */
 
+
+/* section1 start--------------- */
 .section1{
     align-items: start;
     width: 100%;
@@ -36,93 +48,13 @@ background-color: #F5F5F5;
     flex-direction: column;
     background: linear-gradient(74deg, #9F6233 13.95%, #DE821D 83.15%);
 }
-.iconBasket{
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-background-color: #C9A95C;
-border-radius: 50%;
-border: none;
-cursor: pointer;
-
-}
-.navBasket{
-    width: 1920px;
-height: 140px;
-flex-shrink: 0;
-    padding: 45px 156px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-box-shadow: 0px 8px 34px 0px rgba(0, 0, 0, 0.25);
-}
-.wrapperNav{
-    padding: 40px 156px;
-    background: rgba(0, 0, 0, 0.50);
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    height: 130px;
-}
-.goMainArrow{
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-}
-.logoBasket{
-    display: flex;
-    gap: 50px;
-    align-items: center;
-}
-
-/* basket cart start */
-/* .basket_box{
-    width:500px;
-    height: 800px;
-    background-color: red;
-    position: absolute;
-    right: 0;
-    top: 130px;
-    transform: translateX(500px);
-    transition: 1s;
-    z-index: 20;
-} */
-/* basket cart end*/
-
-/* .close{
-    transform: translateX(0px);  
-} */
-
-
 
 .n_l{
     display: flex;
     gap: 76px;
 }
-.searchBasket{
-    width: 337px;
-height: 50px;
-flex-shrink: 0;
-border-radius: 8px;
-border: 1px solid #A18B7F;
-display: flex;
-align-items: center;
-}
-.searchBasket > input{
-border-radius: 8px;
-text-align: center;
-    width: 90%;
-    height: 100%;
-    border: none;
-    outline: 0;
-    cursor: text;
-    font-size: 16px;
 
 
-
-}
 .search {
     display: flex;
     align-items: center;
@@ -138,18 +70,7 @@ text-align: center;
     color: #A18B7F;
     
 }
-.linksBasket{
-    display: flex;
-    gap: 89px;
-}
-.linksBasket > a{
-    color: var(--01, #A18B7F);
-font-size: 18px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-text-decoration: none;
-}
+
 .search > input{
     width: 100%;
     height: 100%;
@@ -296,6 +217,9 @@ cursor: pointer;
     top: 646px;
     right:186px ;
 }
+/* section1 end--------------- */
+
+
 /* section2------------------- */
 .section2{
     overflow: hidden;
@@ -471,7 +395,8 @@ line-height: normal;
     margin-left: 500px;
     margin-bottom: 50px;
 }
-/* SECTION3----------- */
+/* section2 end--------------- */
+/* SECTION3----------- start*/
 .section3{
     overflow: hidden;
     padding-top: 104px;
@@ -536,6 +461,9 @@ background-color: transparent;
     border-radius: 50%;
     cursor: pointer;
 }
+/* section3 end-------------------- */
+
+/* section4 start-------------------- */
 .section4{
 
     overflow: hidden;
@@ -592,6 +520,11 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+/* section 4 end---------------- */
+/* basketWrapper start */
+
+
+/* basketWrapper end */
 .basketCard{
     width: 915px;
     /* height: 1030px; */
@@ -671,3 +604,84 @@ margin: 0 50px;
 .removeButton{
     cursor: pointer;
 }
+.iconBasket{
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+background-color: #C9A95C;
+border-radius: 50%;
+border: none;
+cursor: pointer;
+
+}
+.wrapperBasket{
+    width: 1920px;
+height: 1276px;
+position: relative;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+background-color: #F5F5F5;
+
+}
+.navBasket{
+    width: 1920px;
+height: 140px;
+flex-shrink: 0;
+    padding: 45px 156px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+box-shadow: 0px 8px 34px 0px rgba(0, 0, 0, 0.25);
+}
+.wrapperNav{
+    padding: 40px 156px;
+    background: rgba(0, 0, 0, 0.50);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 130px;
+}
+.goMainArrow{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+.logoBasket{
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+.searchBasket{
+    width: 337px;
+height: 50px;
+flex-shrink: 0;
+border-radius: 8px;
+border: 1px solid #A18B7F;
+display: flex;
+align-items: center;
+}
+.searchBasket > input{
+    border-radius: 8px;
+    text-align: center;
+        width: 90%;
+        height: 100%;
+        border: none;
+        outline: 0;
+        cursor: text;
+        font-size: 16px;
+    }
+    .linksBasket{
+        display: flex;
+        gap: 89px;
+    }
+    .linksBasket > a{
+        color: var(--01, #A18B7F);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+    }
